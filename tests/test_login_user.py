@@ -15,7 +15,7 @@ class TestLoginUser:
         assert response_json[Data.SUCCESS] == True
 
     @allure.title('Ошибка 401 при создании пользователя с некорректным email или паролем')
-    def test_login_user_incorrect_password(self, login_user_incorrect_field):
+    def test_login_user_incorrect_field(self, login_user_incorrect_field):
         response_login_user = UserMethods.auth_user(login_user_incorrect_field)
         response_json = response_login_user.json()
         assert response_login_user.status_code == Data.STATUS_CODE['401']
