@@ -35,14 +35,19 @@ def login_user():
 
     UserMethods.delete_user(headers)
 
-@pytest.fixture
-def login_user_incorrect_password():
+@pytest.fixture(params=['email', 'password'])
+def login_user_incorrect_field(request):
+    field = request.param
     user_data = Data.CREATE_USER_DATA.copy()
     response_create_user = UserMethods.create_user(user_data)
     token = response_create_user.json()['accessToken']
     headers = { "Authorization": token }
+    if field == Data.EMAIL:
+        incorrect_data = ModifyField.incorrect_email_field(user_data)
+    else:
+        incorrect_data = ModifyField.incorrect_password_field(user_data)
 
-    yield ModifyField.incorrect_password_field(user_data)
+    yield incorrect_data
 
     UserMethods.delete_user(headers)
 

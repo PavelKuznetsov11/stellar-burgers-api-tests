@@ -11,13 +11,13 @@ class TestLoginUser:
     def test_login_user(self, login_user):
         response_login_user = UserMethods.auth_user(login_user)
         response_json = response_login_user.json()
-        assert response_login_user.status_code == 200
-        assert response_json['success'] == True
+        assert response_login_user.status_code == Data.STATUS_CODE['200']
+        assert response_json[Data.SUCCESS] == True
 
-    @allure.title('Ошибка 401 при создании пользователя с некорректным паролем')
-    def test_login_user_incorrect_password(self, login_user_incorrect_password):
-        response_login_user = UserMethods.auth_user(login_user_incorrect_password)
+    @allure.title('Ошибка 401 при создании пользователя с некорректным email или паролем')
+    def test_login_user_incorrect_password(self, login_user_incorrect_field):
+        response_login_user = UserMethods.auth_user(login_user_incorrect_field)
         response_json = response_login_user.json()
-        assert response_login_user.status_code == 401
-        assert response_json['message'] == 'email or password are incorrect'
+        assert response_login_user.status_code == Data.STATUS_CODE['401']
+        assert response_json[Data.MESSAGE] == Data.EMAIL_PASSWORD_INCORRECT_ERROR
 
