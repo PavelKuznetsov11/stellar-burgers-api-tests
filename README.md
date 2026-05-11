@@ -51,39 +51,30 @@ stellar-burgers-api-tests/
 Как запустить проект
 
 Клонировать репозиторий:
-
 git clone https://github.com/PavelKuznetsov11/stellar-burgers-api-tests.git
 
 Перейти в папку проекта:
-
 cd stellar-burgers-api-tests
 
 Создать и активировать виртуальное окружение:
-
 python -m venv venv
 
 Для Windows:
-
 venv\Scripts\activate
 
 Для macOS / Linux:
-
 source venv/bin/activate
 
 Установить зависимости:
-
 pip install -r requirements.txt
 
 Запустить тесты:
-
 pytest -v
 
 Запустить тесты с генерацией Allure-результатов:
-
 pytest --alluredir=allure_results
 
 Открыть Allure-отчёт:
-
 allure serve allure_results
 Примеры проверок
 успешная регистрация пользователя
